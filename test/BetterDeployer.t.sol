@@ -27,8 +27,11 @@ contract BetterDeployerTest is Test {
         address carrot1 = deployer2.getDeployment("mycarrot");
         assertEq(carrot1, address(carrot));
 
+        address carrot2 = deployer2.getDeployment("theircarrot");
+        assertEq(carrot2, address(anotherCarrot));
+
         vm.expectRevert();
-        address nonexistent = deployer2.getDeployment("mycarrot1");
+        deployer2.getDeployment("mycarrot1");
     }
 
     function testBetterDeployerNoFile() public {
